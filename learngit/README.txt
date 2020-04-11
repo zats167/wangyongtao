@@ -78,9 +78,8 @@ git checkout 其实是用版本库里的版本替换工作区的版本，无论�
 命令git rm用于删除一个文件。如果一个文件已经被提交到版本库，那么你永远不用担心误删，但是要小心，你只能恢复文件到最新版本，你会丢失最近一次提交后你修改的内容。
 
 添加远程库
-$ git remote add origin git@github.com:wangyongtao/learngit.git
-$ git remote add origin https://github.com/wangyongtao/learngit.git
-$ git remote add origin git@github.com:wangyongtao/learngit.git 
+ $ git remote add origin git@github.com:zats167/wangyongtao.git
+
 $ git remote -v
 请千万注意，把上面的 wangyongtao 替换成你自己的 GitHub 账户名，否则，你在本地关联的就是我的远程库，关联没有问题，但是你以后推送是推不上去的，因为你的 SSH Key 公钥不在我的账户列表中。
 添加后，远程库的名字就是 origin，这是 Git 默认的叫法，也可以改成别的，但是 origin 这个名字一看就知道是远程库。
@@ -214,7 +213,7 @@ feature 分支是否推到远程，取决于你是否和你的小伙伴合作在
 
 现在，模拟一个你的小伙伴，可以在另一台电脑（注意要把 SSH Key 添加到 GitHub）或者同一台电脑的另一个目录下克隆：
 
-$ git clone git@github.com:michaelliao/learngit.git
+$ git clone git@github.com:zats167/learngit.git
 Cloning into 'learngit'...
 remote: Counting objects: 46, done.
 remote: Compressing objects: 100% (26/26), done.
@@ -324,3 +323,16 @@ To git@github.com:michaelliao/learngit.git
 建立本地分支和远程分支的关联，使用git branch --set-upstream branch-name origin/branch-name；
 
 从远程抓取分支，使用git pull，如果有冲突，要先处理冲突。
+
+看了好多资料终于搞定了git 中clone命令报错这个问题，废话不多说直接上步骤希望对大家有帮助。
+
+   1   删除.ssh文件夹（直接搜索该文件夹）下的known_hosts(手动删除即可，不需要git）
+
+   2   在下载好的Git中的bin目录下打开bash.exe输入命令ssh-keygen -t rsa -C "username" (注：username为你git上的用户名)，如果执行成功。返回：
+
+       Generating public/private rsa key pair.
+       Enter file in which to save the key (/Users/username/.ssh/id_rsa): //这里的username是电脑上的用户名，这个地址也是文件的存储地址，然后我们按
+
+      回车，如果你以前有存储地址会返回/Users/your username/.ssh/id_rsa already exists.Overwrite (y/n)?直接输入y回车。如果以前没有储存地址就会出现
+
+      Enter passphrase(empty for no passphrase);也直接回车，两种情况回车后都会出现 Enter same passphrase again 然后接着回车会显示一长串内容其中
