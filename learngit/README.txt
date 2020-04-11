@@ -70,11 +70,29 @@ $ git commit -m "remove test.txt"
  1 file changed, 1 deletion(-)
  delete mode 100644 test.txt
 现在，文件就从版本库中被删除了。
-
 另一种情况是删错了，因为版本库里还有呢，所以可以很轻松地把误删的文件恢复到最新版本：
-
 $ git checkout -- test.txt
 git checkout 其实是用版本库里的版本替换工作区的版本，无论工作区是修改还是删除，都可以“一键还原”。
-
 小结
 命令git rm用于删除一个文件。如果一个文件已经被提交到版本库，那么你永远不用担心误删，但是要小心，你只能恢复文件到最新版本，你会丢失最近一次提交后你修改的内容。
+
+添加远程库
+$ git remote add origin zats167@163.com:wangyongtao/learngit.git
+请千万注意，把上面的 wangyongtao 替换成你自己的 GitHub 账户名，否则，你在本地关联的就是我的远程库，关联没有问题，但是你以后推送是推不上去的，因为你的 SSH Key 公钥不在我的账户列表中。
+添加后，远程库的名字就是 origin，这是 Git 默认的叫法，也可以改成别的，但是 origin 这个名字一看就知道是远程库。
+下一步，就可以把本地库的所有内容推送到远程库上：
+$ git push -u origin master
+Counting objects: 19, done.
+Delta compression using up to 4 threads.
+Compressing objects: 100% (19/19), done.
+Writing objects: 100% (19/19), 13.73 KiB, done.
+Total 23 (delta 6), reused 0 (delta 0)
+To git@github.com:wangyongtao/learngit.git
+ * [new branch]      master -> master
+Branch master set up to track remote branch master from origin.
+把本地库的内容推送到远程，用git push命令，实际上是把当前分支 master 推送到远程。
+由于远程库是空的，我们第一次推送 master 分支时，加上了-u参数，Git 不但会把本地的 master 分支内容推送的远程新的 master 分支，还会把本地的 master 分支和远程的 master 分支关联起来，在以后的推送或者拉取时就可以简化命令。
+要关联一个远程库，使用命令git remote add origin git@server-name:path/repo-name.git；
+关联后，使用命令git push -u origin master第一次推送 master 分支的所有内容；
+此后，每次本地提交后，只要有必要，就可以使用命令git push origin master推送最新修改；
+分布式版本系统的最大好处之一是在本地工作完全不需要考虑远程库的存在，也就是有没有联网都可以正常工作，而SVN在没有联网的时候是拒绝干活的！当有网络的时候，再把本地提交推送一下就完成了同步，真是太方便了！
