@@ -77,7 +77,7 @@ git checkout 其实是用版本库里的版本替换工作区的版本，无论�
 命令git rm用于删除一个文件。如果一个文件已经被提交到版本库，那么你永远不用担心误删，但是要小心，你只能恢复文件到最新版本，你会丢失最近一次提交后你修改的内容。
 
 添加远程库
-$ git remote add origin zats167@163.com:wangyongtao/learngit.git
+$ git remote add origin git@github.com:wangyongtao/learngit.git
 请千万注意，把上面的 wangyongtao 替换成你自己的 GitHub 账户名，否则，你在本地关联的就是我的远程库，关联没有问题，但是你以后推送是推不上去的，因为你的 SSH Key 公钥不在我的账户列表中。
 添加后，远程库的名字就是 origin，这是 Git 默认的叫法，也可以改成别的，但是 origin 这个名字一看就知道是远程库。
 下一步，就可以把本地库的所有内容推送到远程库上：
