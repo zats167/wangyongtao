@@ -63,7 +63,7 @@ $ git status
 no changes added to commit (use "git add" and/or "git commit -a")
 现在你有两个选择，一是确实要从版本库中删除该文件，那就用命令git rm删掉，并且git commit：
 
-$ git rm test.txt
+$ git rm test.txt  不删除提交 git commit -a -m
 rm 'test.txt'
 $ git commit -m "remove test.txt"
 [master d17efd8] remove test.txt
@@ -75,3 +75,6 @@ $ git commit -m "remove test.txt"
 
 $ git checkout -- test.txt
 git checkout 其实是用版本库里的版本替换工作区的版本，无论工作区是修改还是删除，都可以“一键还原”。
+
+小结
+命令git rm用于删除一个文件。如果一个文件已经被提交到版本库，那么你永远不用担心误删，但是要小心，你只能恢复文件到最新版本，你会丢失最近一次提交后你修改的内容。
