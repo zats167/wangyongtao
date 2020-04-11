@@ -23,7 +23,7 @@ git status命令可以让我们时刻掌握仓库当前的状态，上面的命�
 
 虽然 Git 告诉我们 readme.txt 被修改了，但如果能看看具体修改了什么内容，自然是很好的。比如你休假两周从国外回来，第一天上班时，已经记不清上次怎么修改的 readme.txt，所以，需要用git diff这个命令看看：
 
-$ git reset --hard 3628164
+$ git reset --hard 3628164  版本回退
 在 Git 中，总是有后悔药可以吃的。当你用$ git reset --hard HEAD^回退到add distributed版本时，再想恢复到append GPL，就必须找到append GPL的commit id。Git 提供了一个命令git reflog用来记录你的每一次命令：
 $ cat readme.txt
 第一步是用git add把文件添加进去，实际上就是把文件修改添加到暂存区；
@@ -38,4 +38,3 @@ $ git checkout -- readme.txt 撤销修改
 场景1：当你改乱了工作区某个文件的内容，想直接丢弃工作区的修改时，用命令git checkout -- file。
 场景2：当你不但改乱了工作区某个文件的内容，还添加到了暂存区时，想丢弃修改，分两步，第一步用命令git reset HEAD 1HAS，就回到了场景 1，第二步按场景 1 操作。
 场景3：已经提交了不合适的修改到版本库时，想要撤销本次提交，参考版本回退一节，不过前提是没有推送到远程库。
-My stupid boss still prefers SVN.
